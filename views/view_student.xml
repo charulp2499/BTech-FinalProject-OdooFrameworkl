@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="viewstudentlist">
+        <t t-call="placement_portal.frontend_layout">
+          
+          <div class="layout-top-nav">
+            <div class="wrapper">
+              <!-- Navbar -->
+
+              <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                
+                  <a href="/mainpage" class="navbar-brand">
+                    
+                    <span class="brand-text font-weight-light">Placement History Portal</span>
+                  </a>
+                  
+
+                  <!-- Right navbar links -->
+                  <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    <li class="nav-item active">
+                        <a href="/viewstudentlist" class="nav-link">Student Profiles</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/viewfacultylist" class="nav-link">Faculty Profiles</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/login" class="nav-link">Sign In</a>
+                    </li>
+                  </ul>
+                
+              </nav>
+              <!-- /.navbar -->
+
+              <!-- Content Wrapper. Contains page content -->
+              <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                  
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                        <h1 class="m-0 text-dark"> Student <small>Profiles</small></h1>
+                      </div><!-- /.col -->
+                      <div class="col-sm-6">
+                        <ol class="breadcrumb float-right">
+                          <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Filter
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                              <h6 class="dropdown-header">Years</h6>
+                              <t t-foreach="year" t-as="y">
+                                <!-- <a class="dropdown-item" t-attf-href="/sort/pass_out_year/{{y}}"></a> -->
+                                <button class="dropdown-item" t-attf-onClick="pass_out_year('{{y}}');"><t t-esc="y"/></button>
+                              </t>
+                              <div class="dropdown-divider"></div>
+                              <h6 class="dropdown-header">Departments</h6>
+                              <t t-foreach="department" t-as="d">
+                                <button class="dropdown-item" t-attf-onClick="department('{{d.name}}');"><t t-esc="d.name"/></button>
+                              </t>
+                            </div>
+
+                          </div>
+
+                          
+                        </ol>
+                      </div>
+                    </div><!-- /.row -->
+                  
+                </div>
+                <!-- /.content-header -->
+
+              <!-- Main content -->
+              <section class="content">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-12">
+                      
+                        <div class="card-body">
+                          <div class="row">
+                          <t t-foreach="students" t-as="student">
+                          
+                            <div class="col-sm-4 mb-3" name="main_box">
+                              <div class="position-relative p-3 bg-gray" style="height: 140px" name="pass_out_year">
+                                <t t-if="student.pass_out_year">
+                                <div class="ribbon-wrapper ribbon-lg">
+                                  <div class="ribbon bg-white text-lg">
+                                    <t t-esc="student.pass_out_year"/>
+                                  </div>
+                                </div>
+                              </t>
+                                <t t-esc="student.name"/><br/>
+                                <small name="department_name"><t t-esc="student.department.name"/></small><br/>
+                                <small><t t-esc="student.email"/></small><br/>
+                                <button type="button" class="btn btn-outline-secondary btn-xs" data-toggle="modal" t-attf-data-target="#modal-default#{student.id}">
+                                  See Profile
+                                </button>
+                              </div>
+                            </div>
+                            <!-- <div class="row"/> -->
+                    <!-- <div class="col-sm-4"/> -->
+                            <!--  -->
+                            <!--  -->
+                            <div class="modal fade" t-attf-id="modal-default#{student.id}">
+                              <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                  <div class="modal-body">
+                                    <div class="card card-widget widget-user">
+                                      <!-- Add the bg color to the header using any of the bg-* classes -->
+                                      <div class="widget-user-header" style="background-color: rgba(0,0,0,.03);">
+                                        <h3 class="widget-user-username"><t t-esc="student.name"/></h3>
+                                        <h5 class="widget-user-desc"><t t-esc="student.types"/></h5>
+                                      </div>
+                                      <div class="widget-user-image">
+                                        <!-- <img t-attf-src="data:image/*;base64,{{provider.shop_image}}" class="card-img-top" height="200px"/> -->
+                                        <t t-if="student.img">
+                                          <img class="img-circle elevation-3" t-attf-src="data:image/*;base64,{{student.img}}" alt="User Avatar"/>
+                                        </t>
+                                        <t t-else="">
+                                          <img class="img-circle elevation-3" src="placement_portal/static/src/dist/img/user.png" alt="User Avatar"/>
+                                        </t>
+                                      </div>
+                                      <div class="card-footer">
+                                        <t t-if="student.facebook">
+                                          <li class="list-group-item">
+                                            <a t-att-href="student.facebook"  role="button" class="lead"><i class="fa fa-facebook"/><b> Facebook </b> </a>
+                                          </li>
+                                        </t>
+                                        <t t-if="student.instagram">
+                                          <li class="list-group-item">
+                                            <a t-att-href="student.instagram"  role="button" class="lead"><i class="fa fa-facebook"/><b> Instagram </b> </a>
+                                          </li>
+                                          </t>
+                                          <t t-if="student.linkedin">
+                                          <li class="list-group-item">
+                                            <a t-att-href="student.linkedin"  role="button" class="lead"><i class="fa fa-facebook"/><b> Linked - In </b> </a>
+                                          </li>
+                                        </t>
+                                      </div>
+                                    </div>
+                                  <!-- /.card -->
+                              
+                                  <div class="card  bg-gray">
+                                    <div class="card-header p-3">
+                                      
+                                        <h3 class="card-title">Profile</h3>
+                                      
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                      <div class="tab-content">
+                                       
+                                          <!-- About Me Box -->
+                                          
+                                            <div class="card-body">
+                                              
+                                              <strong> Name</strong>
+                                                <td><p class="text-white"><t t-esc="student.name"/></p></td>
+
+                                              <strong> Date Of Birth </strong> 
+                                                <p class="text-white"><t t-esc="student.dob"/></p>
+
+                                              <strong> Department <a class="float-right" >Pass-Out Date</a> </strong> 
+                                                <p class="text-white"><t t-esc="student.department.name"/><a class="float-right"><t t-esc="student.pass_out_year"/></a></p>
+
+                                              <strong> E-Mail Address</strong> 
+                                                <p class="text-white"><t t-esc="student.email"/></p>
+
+                                              <strong> Qualification</strong>
+                                              <p class="text-white">
+                                                  <t t-esc="student.education"/>
+                                                </p>
+                                              
+                                              <strong> Address</strong>
+                                                <p class="text-white"><t t-esc="student.location"/></p>
+
+                                              <strong> Skills</strong>
+                                                <p class="text-white">
+                                                  <t t-esc="student.skills"/>
+                                                </p>
+                              
+                                            
+                                          
+                                          <!-- /.card -->
+                                        </div>
+                                        <!-- /.tab-pane -->
+                                      </div>
+                                        
+                                          <div class="card">
+                                            <div class="card-header p-3 text-dark">
+                                              
+                                                <h3 class="card-title">Time Line</h3>
+                                              
+                                            </div><!-- /.card-header -->
+                                            <div class="card-body">
+                                            <div class="timeline timeline-inverse">
+                                              <t t-set="student_timelines" t-value="timelines.get(student.id, {})"/>
+                                              <t t-foreach="student_timelines" t-as="timeline">
+                                              <!-- timeline time label -->
+                                              <div class="time-label">
+                                                <span class="bg-success">
+                                                  <t t-esc="timeline.start_date"/>
+                                                </span>
+                                              </div>
+                                              <!-- /.timeline-label -->
+                                              <!-- timeline item -->
+                                              <div>
+                                                <i class="fas fa-globe bg-primary"></i>
+
+                                                <div class="timeline-item">
+                                                  <!-- <span class="time"><i class="far fa-clock"></i> 5 mins ago</span> -->
+
+                                                 <t t-esc="timeline.cname"/>
+                                                </div>
+                                              </div>
+                                              <!-- END timeline item -->
+                                              <!-- timeline item -->
+                                              <t t-if="timeline.end_date">
+                                              <div>
+                                                <i class="fas fa-briefcase bg-info"></i>
+
+                                                <div class="timeline-item">
+                                                  
+                                                  <h3 class="timeline-header">About Job Profile</h3>
+
+                                                  <div class="timeline-body">
+                                                   <textarea class="card" readonly='True' rows="5" cols="125"><t t-esc="timeline.job_des"/></textarea>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <!-- END timeline item -->
+                                              
+                                              <!-- timeline time label -->
+                                              <div class="time-label">
+                                                <span class="bg-danger">
+                                                  <t t-esc="timeline.end_date"/>
+                                                </span>
+                                              </div>
+                                            </t>
+                                             
+                                            <t t-if="not timeline.end_date">
+                                                     
+                                                  <div>
+                                                    <i class="fas fa-briefcase bg-info"></i>
+
+                                                  <div class="timeline-item">
+                                                      <h3 class="timeline-header">About Job Profile</h3>
+                                                      <div class="timeline-body">
+                                                      <textarea class="card" readonly='True' rows="5" cols="125"><t t-esc="timeline.job_des"/></textarea>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  
+                                                  <div>
+                                                    <i class="far fa-clock bg-gray"></i>
+                                                  </div>
+                                              </t>
+                                              <!-- /.timeline-label -->                                 
+                                            </t>
+                                            </div>
+                                        
+                                         
+                                      </div>
+                                      <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                  </div>
+                                  </div>
+                                  <!-- /.nav-tabs-custom -->
+                                  </div>
+                                </div>
+                                <!-- /.modal-content -->
+                              </div>
+                              <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
+                            <!--  -->
+                            <!--  -->
+                          </t>
+                          </div>
+                        </div>
+                        <!-- /.card-body -->
+                      
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+              </section>
+
+                <!-- /.content -->
+              </div>
+              <!-- /.content-wrapper -->
+
+              <!-- Control Sidebar -->
+              <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+                <div class="p-3">
+                  <h5>Title</h5>
+                  <p>Sidebar content</p>
+                </div>
+              </aside>
+              <!-- /.control-sidebar -->
+
+              <!-- Main Footer -->
+              <footer class="main-footer">
+                <!-- Default to the left -->
+                <strong>Copyright  2021 : Placement History Recorder</strong>
+              </footer>
+            </div>
+            <!-- ./wrapper -->
+          </div>
+          <script>
+            function department(check){
+            console.log("Yes1", check)
+            }
+          </script>
+
+        </t>
+    </template>
+</odoo>

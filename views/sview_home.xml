@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sviewhome">
+        <t t-call="placement_portal.frontend_layout">
+          <div class="layout-top-nav">
+            <div class="wrapper">
+              <!-- Navbar -->
+
+              <nav class="main-header navbar navbar-expand navbar-info navbar-light">
+                
+                  <a href="#" class="navbar-brand">
+                    <img src="placement_portal/static/src/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                         style="opacity: .8"/>
+                    <span class="brand-text font-weight-light">Placement History Recorder</span>
+                  </a>
+                  
+
+                  <!-- Right navbar links -->
+                  <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    <li class="nav-item active">
+                        <a href="/sviewhome" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/sviewedit" class="nav-link">Edit Profile</a>
+                      </li>
+                    <li class="nav-item">
+                      <a href="/sviewchange" class="nav-link"><p>Change Password</p></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/logout" role="button"><i
+                          class="fa fa-power-off"></i></a>
+                    </li>
+                  </ul>
+                
+              </nav>
+              <!-- /.navbar -->
+
+              <!-- Content Wrapper. Contains page content -->
+              <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                  
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                        <h1 class="m-0 text-dark"> Your <small>Profile</small></h1>
+                      </div><!-- /.col -->
+                    </div><!-- /.row -->
+                  
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+
+                      <div class="col-md-3">
+                        <!-- Profile Image -->
+                        <div class="card card-widget widget-user">
+                            <!-- Add the bg color to the header using any of the bg-* classes -->
+                            <div class="widget-user-header bg-info">
+                              <h3 class="widget-user-username"><t t-esc="user.name"/></h3>
+                              <h5 class="widget-user-desc"><t t-esc="user.types"/></h5>
+                            </div>
+                            <div class="widget-user-image">
+                              <!-- <img t-attf-src="data:image/*;base64,{{provider.shop_image}}" class="card-img-top" height="200px"/> -->
+                              <t t-if="user.img">
+                                <img class="img-circle elevation-3" t-attf-src="data:image/*;base64,{{user.img}}" alt="User Avatar"/>
+                              </t>
+                              <t t-else="">
+                                <img class="img-circle elevation-3" src="placement_portal/static/src/dist/img/user.png" alt="User Avatar"/>
+                              </t>
+                            </div>
+                            <div class="card-footer">
+                               <t t-if="user.facebook">
+                                <li class="list-group-item">
+                                  <a t-att-href="user.facebook"  role="button" class="lead"><i class="fa fa-facebook"/><b> Facebook </b> </a>
+                                </li>
+                              </t>
+                              <t t-if="user.instagram">
+                                <li class="list-group-item">
+                                  <a t-att-href="user.instagram"  role="button" class="lead"><i class="fa fa-facebook"/><b> Instagram </b> </a>
+                                </li>
+                                </t>
+                                <t t-if="user.linkedin">
+                                <li class="list-group-item">
+                                  <a t-att-href="user.linkedin"  role="button" class="lead"><i class="fa fa-facebook"/><b> Linked - In </b> </a>
+                                </li>
+                              </t>
+                            </div>
+                          </div>
+                        <!-- /.card -->
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="col-md-9">
+                        <div class="card">
+                          <div class="card-header p-3">
+                            <ul class="nav nav-pills">
+                              <li class="nav-item"><a class="nav-link active" href="#aboutme" data-toggle="tab">About Me</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
+                            </ul>
+                          </div><!-- /.card-header -->
+                          <div class="card-body">
+                            <div class="tab-content">
+                              <div class="active tab-pane" id="aboutme">
+                                <!-- About Me Box -->
+                                
+                                  <div class="card-body">
+                                    
+                                    <strong> Name</strong>
+                                      <td><p class="text-muted"><t t-esc="user.name"/></p></td>
+
+                                    <strong> Date Of Birth </strong> 
+                                      <p class="text-muted"><t t-esc="user.dob"/></p>
+
+                                    <strong> Department <a class="float-right" >Pass-Out Date</a> </strong> 
+                                      <p class="text-muted"><t t-esc="user.department.name"/><a class="float-right"><t t-esc="user.pass_out_year"/></a></p>
+
+                                    <strong> E-Mail Address</strong> 
+                                      <p class="text-muted"><t t-esc="user.email"/></p>
+
+                                    <strong> Qualification</strong>
+                                    <p/>
+                                      <p class="text-muted"><textarea class="card" readonly='True' rows="5" cols="147"><t t-esc="user.education"/></textarea></p>
+                                    
+                                    <strong> Address</strong>
+                                      <p class="text-muted"><t t-esc="user.location"/></p>
+
+                                    <strong> Skills</strong>
+                                      <p class="text-muted">
+                                        <t t-esc="user.skills"/>
+                                      </p>
+                    
+                                  </div>
+                                  <!-- /.card-body -->
+                                
+                                <!-- /.card -->
+                              </div>
+                              <!-- /.tab-pane -->
+                             <div class="tab-pane" id="timeline">
+                                <!-- The timeline -->
+                                
+                                <div class="timeline timeline-inverse">
+                                  <t t-foreach="timelines" t-as="timeline">
+                                  <!-- timeline time label -->
+                                  <div class="time-label">
+                                    <span class="bg-success">
+                                      <input type="hidden" class="form-control" name="start_date" id="StartDate" t-att-value="timeline.start_date"></input>
+                                      <t t-esc="timeline.start_date"/>
+                                    </span>
+                                  </div>
+                                  <!-- /.timeline-label -->
+                                  <!-- timeline item -->
+                                  <div>
+                                    <i class="fas fa-globe bg-primary"></i>
+
+                                    <div class="timeline-item">
+                                      <!-- <span class="time"><i class="far fa-clock"></i> 5 mins ago</span> -->
+
+                                     <t t-esc="timeline.cname"/>
+                                    </div>
+                                  </div>
+                                  <!-- END timeline item -->
+                                  <!-- timeline item -->
+                                  <t t-if="timeline.end_date">
+                                  <div>
+                                    <i class="fas fa-briefcase bg-info"></i>
+
+                                    <div class="timeline-item">
+                                      
+                                      <h3 class="timeline-header">About Job Profile</h3>
+
+                                      <div class="timeline-body">
+                                       <textarea class="card" readonly='True' rows="5" cols="133"><t t-esc="timeline.job_des"/></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- END timeline item -->
+                                  
+                                  <!-- timeline time label -->
+                                  <div class="time-label">
+                                    <span class="bg-danger">
+                                      <t t-esc="timeline.end_date"/>
+                                    </span>
+                                  </div>
+                                </t>
+                                 
+                                <t t-if="not timeline.end_date">
+                                    <form class="timeline timeline-inverse" t-attf-action="/user/timeline/{{timeline.id}}" method="post" enctype="multipart/form-data">      
+                                      <div>
+                                        <i class="fas fa-briefcase bg-info"></i>
+
+                                      <div class="timeline-item">
+                                          <h3 class="timeline-header">About Job Profile</h3>
+                                          <div class="timeline-body">
+                                           <textarea class="form-control"  id="inputjob_des" name="job_des" rows="5" ><t t-esc="timeline.job_des"/></textarea>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
+                                      <div class="time-label">
+                                        <span class="bg-danger">
+                                         <input type="date" class="form-control" name="end_date" id="EndDate" />
+                                        </span>
+                                      </div>
+                                      <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-10">    
+                                          <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-default">Update</button>
+                                        </div>
+                                      </div>
+                                      <div class="modal fade" id="modal-default">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-body">
+                                              <p>Sure to update your timeline ???</p>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                              <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                          </div>
+                                          <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                      </div>
+                                    </form>
+                                  </t>
+                                  <!-- /.timeline-label -->                                 
+                                </t>
+                                </div>
+                              
+                              </div>
+                              <!-- /.tab-pane --> 
+                            </div>
+                            <!-- /.tab-content -->
+                          </div><!-- /.card-body -->
+                        </div>
+                        <!-- /.nav-tabs-custom -->
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </section>
+                <!-- /.content -->
+              </div>
+              <!-- /.content-wrapper -->
+
+              <!-- Control Sidebar -->
+              <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+                <div class="p-3">
+                  <h5>Title</h5>
+                  <p>Sidebar content</p>
+                </div>
+              </aside>
+              <!-- /.control-sidebar -->
+
+              <!-- Main Footer -->
+              <footer class="main-footer">
+                <!-- To the right -->
+                <div class="float-right d-none d-sm-inline">
+                  Anything you want
+                </div>
+                <!-- Default to the left -->
+                <strong>Copyright 2021.</strong> All rights reserved.
+              </footer>
+            </div>
+            <!-- ./wrapper -->
+          </div>
+        </t>
+    </template>
+</odoo>

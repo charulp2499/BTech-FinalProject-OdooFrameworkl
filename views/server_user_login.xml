@@ -1,0 +1,22 @@
+<odoo>
+    <record model="ir.ui.view" id="users_data_tree_view">
+            <field name="name">user.login.tree</field>
+            <field name="model">placement.portal.user.login</field>
+            <field name="arch" type="xml">
+                <tree string="Users Login Details">
+                    <field name="email"/>
+                    <field name="password"/>
+                    <field name="types"/>
+                </tree>
+            </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="user_login_list">
+        <field name="name">User Login Details</field>
+        <field name="res_model">placement.portal.user.login</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="placement_portal_user_login" parent="placement_portal_root_menu" name="User Login"
+                 action="user_login_list"/>
+</odoo>

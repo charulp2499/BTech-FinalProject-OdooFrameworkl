@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <template id="placement_portal.layout" name="Frontend Layout" inherit_id="web.layout" primary="True">
+        <!-- <xpath expr="//head/script[@id='portal.frontend_layout.odooscript'] | //head/script[last()]" position="after"> -->
+        <xpath expr="." position="inside">
+
+            <meta charset="UTF-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+            <meta name="description" content=""/>
+            <meta name="keywords" content=""/>
+            <meta name="team" content=""/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/customs/css/bootstrap.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/customs/css/owl.carousel.css"/>
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/customs/css/owl.theme.default.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/customs/css/font-awesome.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/customs/css/tooplate-style.css"/>
+            
+            
+            <script type="text/javascript" src="placement_portal/static/src/customs/js/jquery.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/customs/js/bootstrap.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/customs/js/jquery.stellar.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/customs/js/owl.carousel.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/customs/js/smoothscroll.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/customs/js/custom.js"/>
+
+        </xpath>
+    </template>
+
+</odoo>

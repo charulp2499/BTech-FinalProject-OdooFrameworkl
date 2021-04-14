@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="faculites">
+        <t t-call="placement_portal.frontend_layout">
+          <div class="sidebar-mini">
+        	<div class="wrapper">
+            <!-- Navbar -->
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+              <!-- SEARCH FORM -->
+              <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                  <input class="form-control form-control-navbar" type="search" id="search" placeholder="Search" aria-label="Search" onkeyup="searchFunction()"/>
+                  <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <!-- Right navbar links -->
+              <ul class="navbar-nav ml-auto">
+                 <li class="nav-item">
+                      <a href="/logout" class="nav-link">
+                        <i class="fa fa-power-off"></i>
+                      </a>
+                  </li>
+              </ul>
+            </nav>
+            <!-- /.navbar -->
+
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+              <!-- Brand Logo -->
+              <a href="/home" class="brand-link">
+                <img src="placement_portal/static/src/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                     style="opacity: .8"/>
+                <span class="brand-text font-weight-light">Placement Recorder</span>
+              </a>
+
+              <!-- Sidebar -->
+               <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                  <div class="info">
+                    <a href="/home" class="d-block">Home</a>
+                  </div>
+                </div>
+                  
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-header">Information</li>
+                    <li class="nav-item has-treeview">
+                      <a href="/studentdata" class="nav-link">
+                        <i class="fa fa-folder"></i>
+                        <p>
+                          Student List
+                        </p>
+                      </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                      <a href="/factdata" class="nav-link active">
+                        <i class="fa fa-folder-open"></i>
+                        <p>
+                          Faculty List
+                          <!-- <span class="badge badge-info right">6</span> -->
+                        </p>
+                      </a>
+                      <li class="nav-item has-treeview">
+                      <a href="/departdata" class="nav-link">
+                        <i class="fa fa-folder"></i>
+                        <p>
+                          Department List
+                        </p>
+                      </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                      <a href="/deactive" class="nav-link">
+                        <i class="fa fa-folder"></i>
+                        <p>
+                          Deactived Profiles
+                        </p>
+                      </a>
+                    </li>
+                    </li>
+                    
+                  </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+              </div>
+              <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+              <!-- Content Header (Page header) -->
+              <section class="content-header">
+                <div class="container-fluid">
+                  <div class="row mb-2">
+                    <div class="col-sm-6">
+                      <h1>Faculty List</h1>
+                    </div>
+                  </div>
+                </div><!-- /.container-fluid -->
+              </section>
+
+              <!-- Main content -->
+              <section class="content">
+                
+                <!-- Default box -->
+                <div class="card">
+                  <div class="card-body p-0">
+                    <table class="table table-striped projects" id="table">
+                      <!-- Floting User add Button -->
+                      <a href="/userform"><div class="fab">+</div></a>
+                        <thead>
+                            <tr>
+                                <th style="width: 1%">
+                                    #
+                                </th>
+                                <th style="width: 20%">
+                                    Faculty Name
+                                </th>
+                                <th style="width: 20%">
+                                    Department Name
+                                </th>
+                                <th style="width: 30%">
+                                    E-mail Address
+                                </th>
+                                <th style="width: 20%">
+                                  <a class="btn btn-primary btn-sm float-right" href="/viewfacultylist">
+                                        <i class="fa fa-user-alt"/> Go to Profile list
+                                    </a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <t t-set="sr_no" t-value="int(1)"/>
+                          <t t-foreach="faculites" t-as="Faculity">
+                            <tr>
+                                <td><t t-esc="sr_no"/></td>
+                                <td><t t-esc="Faculity.name"/></td>
+                                <td><t t-esc="Faculity.department.name"/></td>
+                                <td><t t-esc="Faculity.email"/></td>
+                          
+                                <td class="project-actions text-right">
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" t-attf-data-target="#modal-danger#{Faculity.id}">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Deactivate
+                                    </button>
+                                </td>
+                            </tr>
+                            <t t-set="sr_no" t-value="sr_no + 1"/>
+                          <div class="modal fade" t-attf-id="modal-danger#{Faculity.id}">
+                            <div class="modal-dialog">
+                              <div class="modal-content bg-danger">
+                                <div class="modal-body">
+                                  <p>Confirmation For Deactivate User Profile !!!</p>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                  <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                                  <a t-attf-href="/user/remove/{{Faculity.id}}"><button type="button" class="btn btn-outline-light">Deactivate Account </button></a>
+                                </div>
+                              </div>
+                              <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                          </div>
+                          <!-- /.modal -->
+                          </t>
+                        </tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+              </section>
+              <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+
+        <footer class="main-footer">
+          
+          <strong>Copyright  2021.</strong> All rights
+          reserved.
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+          <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+      </div>
+      <!-- ./wrapper -->
+        </div>
+        </t>
+    </template>
+</odoo>

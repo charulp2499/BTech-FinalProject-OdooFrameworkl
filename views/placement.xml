@@ -1,0 +1,20 @@
+<odoo>
+	<record model="ir.ui.view" id="placement_tree_view">
+            <field name="name">placement.tree</field>
+            <field name="model">placement.portal.placement</field>
+            <field name="arch" type="xml">
+                <tree string="Placement Details">
+                </tree>
+            </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="placement_detail_list">
+        <field name="name">Placement Details</field>
+        <field name="res_model">placement.portal.placement</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="placement_portal_root_menu" name="Placement Portal"/>
+    <menuitem id="placement_portal_detail" parent="placement_portal_root_menu" name="Placement Details"
+                 action="placement_detail_list"/>
+</odoo>

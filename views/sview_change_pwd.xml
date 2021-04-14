@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sviewchange">
+        <t t-call="placement_portal.frontend_layout">
+          <div class="layout-top-nav">
+            <div class="wrapper">
+              <!-- Navbar -->
+
+              <nav class="main-header navbar navbar-expand navbar-info navbar-light">
+                
+                  <a href="#" class="navbar-brand">
+                    <img src="placement_portal/static/src/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                         style="opacity: .8"/>
+                    <span class="brand-text font-weight-light">Placement History Recorder</span>
+                  </a>
+                  
+                  <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+
+                  <!-- Right navbar links -->
+                  <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    <li class="nav-item">
+                        <a href="/sviewhome" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/sviewedit" class="nav-link">Edit Profile</a>
+                      </li>
+                    <li class="nav-item active">
+                      <a href="/sviewchange" class="nav-link"><p>Change Password</p></a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/logout" role="button"><i
+                          class="fa fa-power-off"></i></a>
+                    </li>
+                  </ul>
+                
+              </nav>
+              <!-- /.navbar -->
+
+              <!-- Content Wrapper. Contains page content -->
+              <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                  
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Change Password</h1>
+                      </div><!-- /.col -->
+                    </div><!-- /.row -->
+                  
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <form action="/sviewchange" method="post"> 
+                    <div class="card card-info">
+                      <div class="card-header">
+                        <h3 class="card-title">Basic Information</h3>
+                      </div>
+                      <div class="card-body">
+                        
+                        <div class="form-group">
+                          <label for="inputClientCompany">Old Password</label>
+                          <input type="password" id="inputClientCompany" name="old_pwd" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputClientCompany">New Password</label>
+                          <input type="password" id="inputClientCompany" name="new_pwd" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputClientCompany">Confirm New Password</label>
+                          <input type="password" id="inputClientCompany" name="con_pwd" class="form-control"/>
+                        </div>
+                         <t t-if="fail">
+                              <p style="color:red;" role="alert">
+                                Something Worng!!!
+                              </p>
+                            </t>
+                      </div>
+                    </div>
+                      <!-- /.card-body -->
+                    
+                    <!-- /.card -->
+                    <div class="row">
+                      <div class="col-12">
+                        <input type="button" value="Update" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-default"/>
+                      </div>
+                    </div>
+                    <!-- Confirmation Boc -->
+                    <div class="modal fade" id="modal-default">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+              
+                          <div class="modal-body">
+                            <p>Sure to update your 'Password' ???</p>
+                          </div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary float-right">Save changes</button>
+                        </div>
+                        <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                    </div>
+                </form>
+               
+              </section>
+                <!-- /.content -->
+              </div>
+              <!-- /.content-wrapper -->
+
+              <!-- Control Sidebar -->
+              <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+                <div class="p-3">
+                  <h5>Title</h5>
+                  <p>Sidebar content</p>
+                </div>
+              </aside>
+              <!-- /.control-sidebar -->
+
+              <!-- Main Footer -->
+              <footer class="main-footer">
+                <!-- To the right -->
+                <div class="float-right d-none d-sm-inline">
+                  Anything you want
+                </div>
+                <!-- Default to the left -->
+                <strong>Copyright 2021.</strong> All rights reserved.
+              </footer>
+            </div>
+            <!-- ./wrapper -->
+          </div>
+        </t>
+    </template>
+</odoo>

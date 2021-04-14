@@ -1,0 +1,21 @@
+<odoo>
+    <record model="ir.ui.view" id="users_data_tree_view">
+            <field name="name">department.data.tree</field>
+            <field name="model">placement.portal.department.data</field>
+            <field name="arch" type="xml">
+                <tree string="Users Details">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="department_detail_list">
+        <field name="name">Department Details</field>
+        <field name="res_model">placement.portal.department.data</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="placement_portal_department_data" parent="placement_portal_root_menu" name="Department Data"
+                 action="department_detail_list"/>
+</odoo>

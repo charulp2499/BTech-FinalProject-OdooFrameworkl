@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sviewedit">
+        <t t-call="placement_portal.frontend_layout">
+          <div class="layout-top-nav">
+            <div class="wrapper">
+              <!-- Navbar -->
+
+              <nav class="main-header navbar navbar-expand navbar-info navbar-light">
+                
+                  <a href="#" class="navbar-brand">
+                    <img src="placement_portal/static/src/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                         style="opacity: .8"/>
+                    <span class="brand-text font-weight-light">Placement History Recorder</span>
+                  </a>
+                  
+                  <!-- Right navbar links -->
+                  <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    <li class="nav-item">
+                        <a href="/sviewhome" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="/sviewedit" class="nav-link">Edit Profile</a>
+                      </li>
+                    <li class="nav-item">
+                      <a href="/sviewchange" class="nav-link"><p>Change Password</p></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/logout" role="button"><i
+                          class="fa fa-power-off"></i></a>
+                    </li>
+                  </ul>
+                
+              </nav>
+              <!-- /.navbar -->
+
+              <!-- Content Wrapper. Contains page content -->
+              <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                  
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                        <h1 class="m-0 text-dark"> Edit <small>Profile</small></h1>
+                      </div><!-- /.col -->
+                    </div><!-- /.row -->
+                  
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                  
+                    <div class="row">
+
+                      <div class="col-md-3">
+                        <!-- Profile Image -->
+                        <div class="card card-widget widget-user">
+                            <!-- Add the bg color to the header using any of the bg-* classes -->
+                            <div class="widget-user-header bg-info">
+                              <h3 class="widget-user-username"><t t-esc="user.name"/></h3>
+                              <h5 class="widget-user-desc"><t t-esc="user.types"/></h5>
+                            </div>
+                            <div class="widget-user-image">
+                              <t t-if="user.img">
+                                <img class="img-circle elevation-3" t-attf-src="data:image/*;base64,{{user.img}}" alt="User Avatar"/>
+                              </t>
+                              <t t-else="">
+                                <img class="img-circle elevation-3" src="placement_portal/static/src/dist/img/user.png" alt="User Avatar"/>
+                              </t>
+                            </div>
+                            <div class="card-footer bg-white">
+                                
+                            </div>
+                          </div>
+                        <!-- /.card -->
+
+                        
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="col-md-9">
+                        <div class="card">
+                          <div class="card-header p-3">
+                            <ul class="nav nav-pills">
+                              <li class="nav-item"><a class="nav-link active" href="#aboutme" data-toggle="tab">About Me</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Add New Timeline</a></li>
+                            </ul>
+                          </div><!-- /.card-header -->
+                          <div class="card-body">
+                            <div class="tab-content">
+                              <div class="active tab-pane" id="aboutme">
+                                <!-- About Me Box -->
+                                
+                                  <form class="form-horizontal" action="/sviewedit" method="post" enctype="multipart/form-data">
+                                    <div class="form-group row">
+                                      <label for="inputName" class="col-sm-2 col-form-label">Profile Pic</label>
+                                      <div class="col-sm-10">
+                                        <input type="file" name="img" class="form-control"/>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="name" id="inputName" t-att-value="user.name"/>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="inputDOB" class="col-sm-2 col-form-label">Date Of Birth</label>
+                                      <div class="col-sm-10">
+                                        <input type="date" class="form-control" name="dob" id="inputDOB" t-att-value="user.dob"/>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="inputQualification" class="col-sm-2 col-form-label">Qualification</label>
+                                      <div class="col-sm-10">
+                                        <textarea class="form-control" name="education" id="inputQualification" rows="5"><t t-esc="user.education"/></textarea>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+                                      <div class="col-sm-10">
+                                        <textarea class="form-control" name="location" id="inputAddress" rows="5"><t t-esc="user.location"/></textarea>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+                                      <div class="col-sm-10">
+                                        <textarea class="form-control" name="skills" id="inputAddress" rows="5"><t t-esc="user.skills"/></textarea>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="inputName" class="col-sm-2 col-form-label">Facebook</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="facebook" id="facebook" t-att-value="user.facebook"/>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="inputName" class="col-sm-2 col-form-label">Instagram</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="instagram" id="instagram" t-att-value="user.instagram"/>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="inputName" class="col-sm-2 col-form-label">Linked-In</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="linkedin" id="linkedin" t-att-value="user.linkedin"/>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <div class="offset-sm-2 col-sm-10">
+                                        
+                                        <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">Deactivate Account</button> -->
+                                        <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-success">Update</button>
+                                      </div>
+                                    </div>
+                                    <div class="modal fade" id="modal-success">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content bg-success">
+                                          
+                                          <div class="modal-body">
+                                            <p>Update Profile!!!</p>
+                                          </div>
+                                          <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-outline-light">Update changes</button>
+                                          </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                      </div>
+                                      <!-- /.modal-dialog -->
+                                    </div>
+                                    <!-- /.modal -->
+                                    <div class="modal fade" id="modal-danger">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content bg-danger">
+                                          <div class="modal-body">
+                                            <p>Sure For Deactivate Your Account !!!</p>
+                                          </div>
+                                          <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                                            <a t-attf-href="/user/deactivate/{{user.id}}"><button type="button" class="btn btn-outline-light">Deactivate Account </button></a>
+                                          </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                      </div>
+                                      <!-- /.modal-dialog -->
+                                    </div>
+                                    <!-- /.modal -->
+                                  </form>
+                                  <!-- /.card-body -->
+                                  
+                                <!-- /.card -->
+                              </div>
+                              <!-- /.tab-pane -->
+                              <div class="tab-pane" id="timeline">
+                                <!-- The timeline -->
+                                <form class="timeline timeline-inverse" action="/add/timeline" method="post">
+                                <div class="timeline timeline-inverse">
+                                  <!-- timeline time label -->
+                                  <div class="time-label">
+                                    <span class="bg-success">
+                                      <input type="date" class="form-control" name="start_date" id="StartDate"/>
+
+                                    </span>
+                                  </div>
+                                  <!-- /.timeline-label -->
+                                  <!-- timeline item -->
+                                  <div>
+                                    <i class="fas fa-globe bg-primary"></i>
+
+                                    <div class="timeline-item">
+                                      <!-- <span class="time"><i class="far fa-clock"></i> 5 mins ago</span> -->
+
+                                       <input type="text" class="form-control" name="cname" id="inputcname" placeholder="Enter Company Name"/>
+                                    </div>
+                                  </div>
+                                  <!-- END timeline item -->
+                                  <!-- timeline item -->
+                                  <div>
+                                    <i class="fas fa-briefcase bg-info"></i>
+
+                                    <div class="timeline-item">
+                                      
+                                      <h3 class="timeline-header">About Job Profile</h3>
+
+                                      <div class="timeline-body">
+                                       <textarea class="form-control"  id="inputjob_des" name="job_des" rows="5" placeholder="Enter Your Job Profile"></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- END timeline item -->
+                                  
+                                  <!-- timeline time label -->
+                                  <div class="time-label">
+                                    <span class="bg-danger">
+                                     <input type="date" class="form-control" name="end_date" id="EndDate" />
+                                    </span>
+                                  </div>
+                                  <!-- /.timeline-label -->
+                                </div>
+                                
+                                <div class="form-group row">
+                                  <div class="offset-sm-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success float-right">Add New Timeline</button>
+                                  </div>
+                                </div>
+                                </form>
+                              </div>
+                              <!-- /.tab-pane --> 
+                            </div>
+                            <!-- /.tab-content -->
+                          </div><!-- /.card-body -->
+                        </div>
+                        <!-- /.nav-tabs-custom -->
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                
+                </section>
+                <!-- /.content -->
+              </div>
+              <!-- /.content-wrapper -->
+
+              <!-- Control Sidebar -->
+              <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+                <div class="p-3">
+                  <h5>Title</h5>
+                  <p>Sidebar content</p>
+                </div>
+              </aside>
+              <!-- /.control-sidebar -->
+
+              <!-- Main Footer -->
+              <footer class="main-footer">
+                <!-- To the right -->
+                <div class="float-right d-none d-sm-inline">
+                  Anything you want
+                </div>
+                <!-- Default to the left -->
+                <strong>Copyright 2021.</strong> All rights reserved.
+              </footer>
+            </div>
+            <!-- ./wrapper -->
+          </div>
+        </t>
+    </template>
+</odoo>

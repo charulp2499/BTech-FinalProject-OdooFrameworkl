@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <template id="placement_portal.frontend_layout" name="Frontend Layout" inherit_id="web.layout" primary="True">
+        <!-- <xpath expr="//head/script[@id='portal.frontend_layout.odooscript'] | //head/script[last()]" position="after"> -->
+        <xpath expr="." position="inside">
+
+            <meta charset="utf-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+            
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/plugins/fontawesome-free/css/all.min.css"/>
+            <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/plugins/icheck-bootstrap/icheck-bootstrap.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/plugins/jqvmap/jqvmap.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/dist/css/adminlte.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/plugins/summernote/summernote-bs4.css"/>
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/customs/fab.css"/>
+            <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" type="text/css"/> 
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/placement_portal/static/src/plugins/toastr/toastr.min.css"/>
+
+            <script type="text/javascript" src="placement_portal/static/src/plugins/jquery/jquery.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/plugins/jquery-ui/jquery-ui.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/plugins/bootstrap/js/bootstrap.bundle.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/plugins/chart.js/Chart.min.js"/> 
+            <script type="text/javascript" src="placement_portal/static/src/plugins/sparklines/sparkline.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/plugins/jqvmap/maps/jquery.vmap.usa.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/plugins/jquery-knob/jquery.knob.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/plugins/moment/moment.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/plugins/summernote/summernote-bs4.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/dist/js/adminlte.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/dist/js/pages/dashboard.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/dist/js/demo.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/dist/js/adminlte.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/plugins/sweetalert2/sweetalert2.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/plugins/toastr/toastr.min.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/customs/searchbox.js"/>
+            <script type="text/javascript" src="placement_portal/static/src/customs/filter.js"/>
+
+            <script type="text/javascript" src="placement_portal/static/src/customs/datepicker.js"/>
+        </xpath>
+    </template>
+
+</odoo>

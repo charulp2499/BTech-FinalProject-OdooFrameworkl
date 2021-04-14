@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="fviewstudentdata">
+        <t t-call="placement_portal.frontend_layout">
+          <div class="layout-top-nav">
+            <div class="wrapper">
+              <!-- Navbar -->
+
+              <nav class="main-header navbar navbar-expand navbar-indigo navbar-dark">
+                
+                  <a href="/fviewhome" class="navbar-brand">
+                    <img src="placement_portal/static/src/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                         style="opacity: .8"/>
+                    <span class="brand-text font-weight-light">Placement History Recorder</span>
+                  </a>
+                  
+                  <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+
+                  <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                    
+                    <!-- SEARCH FORM -->
+                    <form class="form-inline ml-0 ml-md-3">
+                      <div class="input-group input-group">
+                        <input class="form-control form-control-navbar"  type="search" id="search" placeholder="Search" aria-label="Search" onkeyup="searchFunction()"/>
+                        <div class="input-group-append">
+                          <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+                  <!-- Right navbar links -->
+                  <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    <li class="nav-item">
+                        <a href="/fviewhome" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                      <a href="/fviewstudentdata" class="nav-link">Student List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/fviewedit" class="nav-link">Edit Profile</a>
+                      </li>
+                    <li class="nav-item">
+                      <a href="/fviewchange" class="nav-link"><p>Change Password</p></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/logout" role="button"><i
+                          class="fa fa-power-off"></i></a>
+                    </li>
+                  </ul>
+                
+              </nav>
+              <!-- /.navbar -->
+
+              <!-- Content Wrapper. Contains page content -->
+              <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                  <div class="content-header">
+                  
+                    <div class="row mb-1">
+                      <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Student <small>List</small></h1>
+                      </div><!-- /.col -->
+                    </div><!-- /.row -->
+                  
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    
+                    <!-- Default box -->
+                    <!-- Floting User add Button -->
+                    <a href="/fviewuseradd"><div class="fab">+</div></a>
+                    <div class="card">
+                      <div class="card-body p-0">
+                        <table class="table table-striped projects" id="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 1%">
+                                        #
+                                    </th>
+                                    <th style="width: 20%">
+                                        Student Name
+                                    </th>
+                                    <th style="width: 20%">
+                                        Department Name
+                                    </th>
+                                    <th style="width: 30%">
+                                        E-mail Address
+                                    </th>
+                                    <th style="width: 20%">
+                                      Pass Out Year
+                                    <a class="btn btn-primary btn-sm float-right" href="/viewstudentlist">
+                                        <i class="fa fa-user-alt"/> Go to Profile list
+                                    </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                 <t t-set="sr_no" t-value="int(1)"/>
+                                  <t t-foreach="students" t-as="student">
+                                    <tr>
+                                        <td><t t-esc="sr_no"/></td>
+                                        <td><t t-esc="student.name"/></td>
+                                        <td><t t-esc="student.department.name"/></td>
+                                        <td><t t-esc="student.email"/></td>
+                                        <td><t t-esc="student.pass_out_year"/></td>
+                                    </tr>
+                                    <t t-set="sr_no" t-value="sr_no + 1"/>
+                                  </t>
+                            </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+                  </section>
+                <!-- /.content -->
+              </div>
+              <!-- /.content-wrapper -->
+
+              <!-- Control Sidebar -->
+              <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+                <div class="p-3">
+                  <h5>Title</h5>
+                  <p>Sidebar content</p>
+                </div>
+              </aside>
+              <!-- /.control-sidebar -->
+
+              <!-- Main Footer -->
+              <footer class="main-footer">
+                <!-- To the right -->
+                <div class="float-right d-none d-sm-inline">
+                  Anything you want
+                </div>
+                <!-- Default to the left -->
+                <strong>Copyright 2021.</strong> All rights reserved.
+              </footer>
+            </div>
+            <!-- ./wrapper -->
+          </div>
+        </t>
+    </template>
+</odoo>
